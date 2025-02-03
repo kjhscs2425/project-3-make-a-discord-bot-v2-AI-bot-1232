@@ -19,7 +19,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-  if message.channel.name == "drebees-bot":
+  if message.channel.name == "ai-bot-1234":
     if message.author != client.user:
       user_name = message.author.display_name
       if my_bot.should_i_respond(message.content, user_name):
@@ -27,3 +27,4 @@ async def on_message(message):
         await message.channel.send(response)
 
 client.run(my_secret)
+
