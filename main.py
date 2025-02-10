@@ -24,7 +24,10 @@ async def on_message(message):
       user_name = message.author.display_name
       if my_bot.should_i_respond(message.content, user_name):
         response = my_bot.respond(message.content, user_name)
+        if response is None: return
         await message.channel.send(response)
 
 client.run(my_secret)
+
+
 

@@ -7,48 +7,38 @@ This function will be called every time anyone says anything on a channel where 
 * You can have certain words or patterns in the messages trigger the bot.
 * You can have the bot respond differently to different users
 """
-import random
+from http.client import responses
+import random 
 
-def should_i_respond(user_message, user_name):\
+
+def should_i_respond(user_message, user_name):
    
     message = user_message.lower()
     
     trigger_phrases = [
-        "hello bot",
-        "robot",
-        "game",
-        "joke",
-        "weather",
-        "time",
+        "hello bot", "flip","game", "joke", "weather", "time", "roll","henry","justin",
     ]
     
-    # Count vowels in the message
     vowel_count = sum(1 for char in message if char in 'aeiou')
     
-    # Check for any trigger phrase
     for phrase in trigger_phrases:
         if phrase in message:
             return True
             
-    # Return True if message has more than 5 vowels
-    return vowel_count > 5
+
 
 def respond(user_message, user_name):
 
-    # Convert message to lowercase for matching
     message = user_message.lower()
     
-    # Replace common abbreviations
-    message = message.replace("u", "you")
-    message = message.replace("r", "are")
     
-    # Special greeting for messages starting with "hello"
+    print(f"Message: {message}")
+
     if message.startswith("hello") or message.startswith("hi"):
         return f"Hello {user_name.capitalize()}! How can I help you today?"
     
-    # Random responses for different triggers
     if "joke" in message:
-        jokes = [
+        joke = [
             "Why don't programmers like nature? It has too many bugs!",
             "What do you call a bot that steals? A ROB-ot!",
             "Why did the programmer quit his job? Because he didn't get arrays!",
@@ -56,19 +46,17 @@ def respond(user_message, user_name):
             "How do get straight A's? By using a ruler"
 
         ]
-        return random.choice(jokes)
+        return random.choice(joke)
     
-    if "game" in message:
-        games = ["Rock Paper Scissors", "Number Guessing", "Word Chain"]
-        return f"I know several games! Let's play {random.choice(games)}!"
-    
+
     if "quote" in message:
-        quotes = [
+        quote = [
             "Be the change you wish to see in the world.",
             "Code is poetry in motion.",
-            "Keep your face to the sunshine and you cannot see the shadows."
+            "Keep your face to the sunshine and you cannot see the shadows.",
         ]
-        return random.choice(quotes).upper()
+        return random.choice(quote).upper()
+    
     
     if "flip" in message:
         return f"flips a coin It's {random.choice(['heads', 'tails'])}!"
@@ -80,18 +68,37 @@ def respond(user_message, user_name):
         conditions = ["sunny", "rainy", "thunder storm", "windy", "stormy"]
         return f"Looking out my virtual window, it seems {random.choice(conditions)} today!"
     
+    if "henry" in message:
+        print("omg henry!!")
+        return random.choice(
+            [
+                "RIP Henry - taken out by a pillager in Minecraft", 
+                "Henry vs pillager: pillager 1, Henry 0", 
+                "Legend says Henry is still respawning from that pillager encounter..."
+            ]
+        )
+        
     if "time" in message:
-        return "I'm still learning to tell time! "
-    
-    # Check for user's name in message
+        return "you tell what the time is"
     if user_name.lower() in message:
         return f"Hey {user_name}! I noticed you're talking about yourself!"
-    
-    # Default response using string slicing
     if len(message) > 10:
         return f"Interesting message! The first few characters were: '{message[:10]}...'"
+    if "random number" in message:
+        return "1,5,4,3,2,8,345,234,123,56345,8745!"
+    if "justin" in message:
+       return "be quite timy your gonna get us kicked out of the JCC"
+    if "roi" in message:
+       return ""
     
-    return "Beep boop! I'm here if you need anything!"
+
+    # End of the function, the message does not get a respoinse from the bot
+    print("Nothing to respond to!")
+    return
+    
+
+    
+
 
 
 
@@ -112,54 +119,34 @@ def spin_twister_spinner():
     info.extend([color, body_part])
     return info
 
-import random
 
-def generate_random_adventure():
-    """
-    Generates a random mini-adventure scenario for the bot to share.
+def get_player_choice():
+  while True:
+    choice = input("Choose Rock, Paper, or Scissors: ").lower()
+    if choice in ["rock", "paper", "scissors"]:
+      return choice
+    else:
+      print("Invalid choice. Please try again.")
 
-    Returns:
-    str: A randomly generated adventure
-    """
-    locations = [
-        "mysterious cave",
-        "enchanted forest",
-        "abandoned spaceship",
-        "hidden mountain temple",
-        "underwater city"
-    ]
-    
-    challenges = [
-        "solve a riddle",
-        "defeat a guardian",
-        "find a hidden treasure",
-        "escape a trap",
-        "repair a broken artifact"
-    ]
-    
-    companions = [
-        "a old wizard",
-        "a timy sidekick",
-        "Naveen",
-        "an ancient burruito"
-    ]
+def get_computer_choice():
+  return random.choice(["rock", "paper", "scissors"])
 
-    location = random.choice(locations)  # Changed variable name to singular
-    challenge = random.choice(challenges)  # Changed from random.choices to random.choice
-    companion = random.choice(companions)  # Changed from random.choices to random.choice
+def determine_winner(player_choice, computer_choice):
+  print(f"You chose {player_choice}, computer chose {computer_choice}.")
+  if player_choice == computer_choice:
+    print("It's a tie!")
+  elif (player_choice == "rock" and computer_choice == "scissors") or \
+       (player_choice == "paper" and computer_choice == "rock") or \
+       (player_choice == "scissors" and computer_choice == "paper"):
+    print("You win!")
+  else:
+    print("You lose!")
 
-    adventure = (
-        f"You find yourself in a {location}, "
-        f"accompanied by {companion}. "
-        f"Your mission: {challenge}! "
-        "Will you succeed? The adventure awaits!"
-    )
+while True:
+  player_choice = get_player_choice()
+  computer_choice = get_computer_choice()
+  determine_winner(player_choice, computer_choice)
 
-    return adventure
-
-# def respond(user_message, user_name):
-#     # Check if 'adventure' is in the user's message
-#     if "adventure" in user_message.lower():
-#         return generate_random_adventure()
-    
-#     # (rest of the previous code remains unchanged)
+  play_again = input("Play again? (y/n): ").lower()
+  if play_again != "y":
+    break
