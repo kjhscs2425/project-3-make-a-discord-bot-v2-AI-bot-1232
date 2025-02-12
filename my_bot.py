@@ -16,7 +16,7 @@ def should_i_respond(user_message, user_name):
     message = user_message.lower()
     
     trigger_phrases = [
-        "hello bot", "flip","game", "joke", "weather", "time", "roll","henry","justin",
+        "hello bot", "flip","game", "joke", "what is the weather", "time", "roll","henry","justin","quote","roi","helpful", "not useful","facts",
     ]
     
     vowel_count = sum(1 for char in message if char in 'aeiou')
@@ -89,7 +89,23 @@ def respond(user_message, user_name):
     if "justin" in message:
        return "be quite timy your gonna get us kicked out of the JCC"
     if "roi" in message:
-       return ""
+       return "I like cats"
+    if "not useful" in message:
+       return "sorry, what else can I help you with"
+    if "helpful" in message:
+       return "Thanks, anything else I can help you with"
+    if "facts" in message:
+       return random.choice(
+            [
+            "Australia is wider than the moon: Australia is almost 4,000 km across from east to west, while the moon is only 3,400 km in diamete",
+            "Avocados are fruits: Avocados are technically fruits, not vegetables.", 
+            "Alaska is the only US state typed with one row of the keyboard: Alaska is the only US state that can be typed using one row of the keyboard.",
+            "You can't hum while holding your nose",
+            "A cloud weighs around a million tonnes.",
+            "Venus is the only planet to spin clockwise.",
+            "Reindeer like to eat bananas.",
+            ]
+        )     
     
 
     # End of the function, the message does not get a respoinse from the bot
