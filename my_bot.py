@@ -106,17 +106,10 @@ def respond(user_message, user_name):
             "Reindeer like to eat bananas.",
             ]
         )     
-    
 
     # End of the function, the message does not get a respoinse from the bot
     print("Nothing to respond to!")
     return
-    
-
-    
-
-
-
 
 def spin_twister_spinner():
     """
