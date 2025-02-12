@@ -16,7 +16,7 @@ def should_i_respond(user_message, user_name):
     message = user_message.lower()
     
     trigger_phrases = [
-        "hello bot", "flip","game", "joke", "what is the weather", "time", "roll","henry","justin","quote","roi","helpful", "not useful","facts",
+        "hello bot", "flip","game", "joke", "what is the weather", "time", "roll","henry","justin","quote","roi","helpful", "not useful","facts","gordon",
     ]
     
     vowel_count = sum(1 for char in message if char in 'aeiou')
@@ -105,9 +105,19 @@ def respond(user_message, user_name):
             "Venus is the only planet to spin clockwise.",
             "Reindeer like to eat bananas.",
             ]
-        )     
-
-    # End of the function, the message does not get a respoinse from the bot
+        )       
+    if "gordon" in message:
+       return random.choice(
+          [
+             "My gran could do better! And shes dead!",
+             "There’s enough garlic in here to kill every vampire in Europe.",
+             "Don't just stand there like a big bleep muffin",
+             "This fish is so raw, he’s still finding Nemo.",
+             "You added so much salt and pepper I can hear the dish singing ‘Push It",
+             "This pizza is so disgusting, if you take it to Italy you'll get arrested",
+          ]
+       )
+   
     print("Nothing to respond to!")
     return
 
