@@ -16,7 +16,7 @@ def should_i_respond(user_message, user_name):
     message = user_message.lower()
     
     trigger_phrases = [
-        "hello bot", "flip","game", "joke", "what is the weather", "time", "roll","henry","justin","quote","roi","helpful", "not useful","facts","gordon",
+        "hello bot", "flip","game", "joke", "what is the weather", "time", "roll","henry","justin","quote","roi","helpful", "not useful","facts","gordon","scramble",
     ]
     
     vowel_count = sum(1 for char in message if char in 'aeiou')
@@ -117,6 +117,15 @@ def respond(user_message, user_name):
              "This pizza is so disgusting, if you take it to Italy you'll get arrested",
           ]
        )
+      
+    if "scramble" in message:
+        chars = list(message)
+        random.shuffle(chars)
+        scrambled = ''.join(chars)
+        return f"Your scrambled message: {scrambled}"
+    
+    return "im not sure how to answer that"
+    
    
     print("Nothing to respond to!")
     return
