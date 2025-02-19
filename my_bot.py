@@ -10,23 +10,20 @@ This function will be called every time anyone says anything on a channel where 
 from http.client import responses
 import random 
 
-
 def should_i_respond(user_message, user_name):
    
     message = user_message.lower()
     
     trigger_phrases = [
-        "hello bot", "flip","game", "joke", "what is the weather", "time", "roll","henry","justin","quote","roi","helpful", "not useful","facts","gordon","scramble",
+        "hello bot", "flip","game", "joke", "what is the weather", "time", "roll","henry","justin","quote","roi","helpful", "not useful","facts","gordon","scramble","Jordon is bad at fortnite"
     ]
     
     vowel_count = sum(1 for char in message if char in 'aeiou')
-    
+ 
     for phrase in trigger_phrases:
         if phrase in message:
             return True
             
-
-
 def respond(user_message, user_name):
 
     message = user_message.lower()
@@ -63,7 +60,9 @@ def respond(user_message, user_name):
     
     if "roll" in message:
         return f" You rolled a {random.randint(1, 6)}!"
-    
+    import datetime
+
+    x = datetime.datetime.now()
     if "weather" in message:
         conditions = ["sunny", "rainy", "thunder storm", "windy", "stormy"]
         return f"Looking out my virtual window, it seems {random.choice(conditions)} today!"
@@ -123,12 +122,16 @@ def respond(user_message, user_name):
         random.shuffle(chars)
         scrambled = ''.join(chars)
         return f"Your scrambled message: {scrambled}"
-    
-    return "im not sure how to answer that"
-    
+    if "Jordon is bad at fortnite" in message:
+       chars = list(message)
+       random.shuffle(chars)
+       scrambled = ''.join(chars)
+       return f"Your scrambles message {message}"
    
-    print("Nothing to respond to!")
-    return
+    return "im not sure how to answer that"
+
+    
+
 
 def spin_twister_spinner():
     """
@@ -178,3 +181,5 @@ while True:
   play_again = input("Play again? (y/n): ").lower()
   if play_again != "y":
     break
+
+
