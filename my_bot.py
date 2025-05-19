@@ -60,8 +60,8 @@ def respond(user_message, user_name):
     
     if "roll" in message:
         return f" You rolled a {random.randint(1, 6)}!"
+    
     import datetime
-
     x = datetime.datetime.now()
     if "weather" in message:
         conditions = ["sunny", "rainy", "thunder storm", "windy", "stormy"]
